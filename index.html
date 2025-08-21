@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Happy Birthday, My Love 🎂💖</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&family=Great+Vibes&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --rose:#f43f5e; --pink:#ec4899; --amber:#f59e0b; --ink:#111827; --muted:#6b7280; --bg1:#fff1f2; --bg2:#fff7ed;
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{margin:0; font-family:Poppins,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif; color:var(--ink);
+       background: radial-gradient(1200px 800px at 20% -10%, #ffe4e6 0%, transparent 50%),
+                   radial-gradient(1200px 800px at 120% 10%, #fff7ed 0%, transparent 50%),
+                   linear-gradient(135deg, var(--bg1), var(--bg2));}
+  .container{max-width:1100px; margin:0 auto; padding:0 20px}
+  .hero{padding:90px 0 60px; text-align:center; position:relative}
+  .chip{display:inline-flex; align-items:center; gap:.5rem; background:#fff8; backdrop-filter: blur(6px);
+        padding:.5rem 1rem; border-radius:999px; box-shadow:0 10px 30px #00000014}
+  h1{font-size:clamp(2.2rem, 6vw, 4rem); margin:.6rem 0 .3rem; font-weight:800}
+  h1 .grad{background:linear-gradient(90deg,var(--rose),var(--pink)); -webkit-background-clip:text; background-clip:text; color:transparent}
+  .tagline{max-width:760px; margin:0 auto; color:var(--muted); font-size:1.075rem}
+  .btns{display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin:24px 0}
+  .btn{border:0; padding:12px 20px; border-radius:999px; cursor:pointer; font-weight:600; box-shadow:0 10px 24px #f43f5e33}
+  .btn.primary{background:var(--rose); color:white}
+  .btn.ghost{background:#fff; color:var(--rose)}
+  .grid4{display:grid; grid-template-columns:repeat(4,1fr); gap:10px; max-width:560px; margin:26px auto 0}
+  .counter{background:#fff8; backdrop-filter: blur(6px); border-radius:18px; padding:14px; box-shadow:0 8px 24px #00000012; text-align:center}
+  .counter .num{font-weight:800; font-size:1.8rem}
+  .counter .lbl{font-size:.7rem; color:var(--muted)}
+
+  /* Cards & sections */
+  section{padding:38px 0}
+  .card{background:#fffbe; background:#ffffffb3; backdrop-filter: blur(8px); border-radius:22px; padding:22px; box-shadow:0 18px 40px #00000012}
+  .sec-title{display:flex; align-items:center; gap:10px; font-weight:800; font-size:1.6rem; margin-bottom:12px}
+  .lead{font-size:1.05rem; line-height:1.8}
+
+  /* Timeline */
+  .timeline{position:relative; margin-left:8px; padding-left:22px}
+  .timeline:before{content:""; position:absolute; left:0; top:0; bottom:0; width:3px; background:#fecdd3}
+  .t-item{position:relative; margin:18px 0}
+  .t-item:before{content:"❤"; position:absolute; left:-31px; top:0; width:26px; height:26px; display:grid; place-items:center; background:var(--rose); color:#fff; border-radius:999px; font-size:.75rem; box-shadow:0 6px 14px #f43f5e55}
+  .t-date{font-weight:700}
+  .t-text{color:#374151}
+
+  /* Gallery */
+  .gallery{display:grid; grid-template-columns:repeat(2,1fr); gap:10px}
+  @media(min-width:640px){ .gallery{grid-template-columns:repeat(3,1fr)} }
+  @media(min-width:900px){ .gallery{grid-template-columns:repeat(4,1fr)} }
+  .g-tile{overflow:hidden; border-radius:18px; background:#fff; box-shadow:0 10px 24px #00000012; cursor:pointer}
+  .g-tile img{width:100%; height:170px; object-fit:cover; display:block; transition: transform .35s}
+  .g-tile:hover img{transform:scale(1.05)}
+  .modal{position:fixed; inset:0; display:none; place-items:center; background:rgba(0,0,0,.72); padding:20px; z-index:50}
+  .modal.open{display:grid}
+  .modal img{max-width:92vw; max-height:85vh; border-radius:18px; box-shadow:0 30px 70px #00000060}
+
+  /* Quiz */
+  .qa{display:grid; gap:12px}
+  .q{display:flex; justify-content:space-between; align-items:flex-start; gap:16px}
+  .q p{margin:6px 0 0}
+  .reveal{border:0; padding:8px 14px; border-radius:999px; background:var(--rose); color:#fff; cursor:pointer; box-shadow:0 8px 20px #f43f5e44}
+  .ans{color:#9f1239; margin-top:6px}
+
+  /* Footer */
+  footer .note{color:#6b7280; text-align:center}
+
+  /* Floating hearts */
+  .hearts{pointer-events:none; position:fixed; inset:0; overflow:hidden; z-index:-1}
+  .heart{position:absolute; width:18px; height:18px; opacity:.5; transform:translate(-50%,-50%)}
+  .heart:before{content:""; position:absolute; width:18px; height:18px; background:rgba(244,63,94,.5); transform:rotate(45deg); border-radius:6px 0 0 6px}
+  .heart:after{content:""; position:absolute; width:18px; height:18px; background:rgba(244,63,94,.5); transform:rotate(45deg); border-radius:6px 0 0 6px; left:-9px}
+  @keyframes floaty{0%{transform:translateY(0) scale(.7); opacity:.3} 50%{opacity:.7} 100%{transform:translateY(-80px) scale(1); opacity:.2}}
+
+  /* Audio pill */
+  .audio{display:flex; align-items:center; gap:10px}
+  .play{border:0; padding:10px 16px; border-radius:999px; background:var(--rose); color:#fff; cursor:pointer}
+
+  /* Confetti canvas */
+  #confetti{position:fixed; inset:0; pointer-events:none}
+</style>
+</head>
+<body>
+<canvas id="confetti"></canvas>
+<div class="hearts" id="hearts"></div>
+
+<header class="hero container">
+  <div class="chip" id="chip">A birthday love note for <span id="herNameChip"></span></div>
+  <h1>Happy Birthday, <span class="grad" id="herName"></span>!</h1>
+  <p class="tagline" id="heroTagline"></p>
+  <div class="btns">
+    <button class="btn primary" id="reveal">🎁 Reveal Surprise</button>
+    <a href="#gallery" class="btn ghost">📷 See Memories</a>
+  </div>
+  <div class="grid4" id="countdown">
+    <div class="counter"><div class="num" id="d">00</div><div class="lbl">Days</div></div>
+    <div class="counter"><div class="num" id="h">00</div><div class="lbl">Hours</div></div>
+    <div class="counter"><div class="num" id="m">00</div><div class="lbl">Minutes</div></div>
+    <div class="counter"><div class="num" id="s">00</div><div class="lbl">Seconds</div></div>
+  </div>
+  <div class="audio" id="audioWrap" style="justify-content:center; margin-top:16px; display:none">
+    <button class="play" id="play">▶ Play Song</button>
+    <span class="muted">Our song</span>
+    <audio id="song" preload="auto"></audio>
+  </div>
+</header>
+
+<main class="container">
+  <section>
+    <div class="sec-title">💌 A Letter From My Heart</div>
+    <div class="card">
+      <p class="lead" id="loveLetter"></p>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-title">📅 Our Little Timeline</div>
+    <div class="card">
+      <div class="timeline" id="timeline"></div>
+    </div>
+  </section>
+
+  <section id="gallery">
+    <div class="sec-title">📸 Moments I Want Forever</div>
+    <div class="gallery" id="photos"></div>
+  </section>
+
+  <section>
+    <div class="sec-title">✨ A Tiny Love Quiz</div>
+    <div class="qa" id="quiz"></div>
+  </section>
+</main>
+
+<footer class="container" style="padding-bottom:60px">
+  <div class="card" style="text-align:center">
+    <p class="note">Made with endless love by <span id="yourName"></span>. If this page could hug you, it would. 🤍</p>
+  </div>
+</footer>
+
+<div class="modal" id="modal"><img id="modalImg" alt="memory" /></div>
+
+<script>
+/***********************
+ * PERSONALIZE HERE 💖  *
+ ***********************/
+const SETTINGS = {
+  yourName: "Joyal",
+  herName: "Diya",
+  // her birthday (YYYY-MM-DDTHH:mm:ss) 24-hour time
+  herBirthdayISO: "2025-08-22T00:00:00",
+  heroTagline: "Every day with you is my favorite adventure.",
+  loveLetter: `My dearest love,\n\nFrom the moment you walked into my life, the ordinary turned magical.\nYour smile rewires my heart, your laugh is my favorite song, and being with you feels like home.\n\nToday is your day — and I just want to say thank you for being you.\nI love you more than stars love the night.\n\nAlways yours,\nJoyal ❤️`,
+  songUrl: "", // put an mp3/ogg url here to show the player
+  photos: [
+    "1.jpg",
+    "2.jpg",
+    "3.jpg",
+    "4.jpg",
+    "5.jpg",
+    "6.jpg",
+  ],
+  timeline: [
+    { date: "I texted you", text: "You said 'hi' and my heart replied 'mine.'" },
+    { date: "We Meet", text: "I learned your laugh..I kissed you..I never want to forget it.." },
+    { date: "Long Distance", text: "I know..I Konw..Its been 4 years.. " },
+    { date: "Today", text: "16 more days.. Leaving everything behind for a new beginning with you." },
+  ],
+  quiz: [
+    { q: "Where did we first meet?", a: "Forum Mall Koramangala. I still remember the time you hold my hand " },
+    { q: "My favorite thing about you?", a: "Your laugh. I still dont know why you laugh for everything I say. But I love that you laugh for no reason.." },
+    { q: "My dream trip?", a: "For now its Ireland. But anywhere as long as it's with you." },
+  ]
+};
+
+/*************** UTIL ***************/
+const $ = (q) => document.querySelector(q);
+const $$ = (q) => document.querySelectorAll(q);
+
+function typewriter(el, text, speed=28){
+  el.textContent = "";
+  let i=0; const id = setInterval(()=>{ el.textContent = text.slice(0, ++i); if(i>=text.length) clearInterval(id); }, speed);
+}
+
+function setCountdown(targetISO){
+  const t = new Date(targetISO).getTime();
+  function tick(){
+    const now = Date.now();
+    const diff = Math.max(t - now, 0);
+    const d = Math.floor(diff/86400000);
+    const h = Math.floor((diff/3600000)%24);
+    const m = Math.floor((diff/60000)%60);
+    const s = Math.floor((diff/1000)%60);
+    $("#d").textContent = String(d).padStart(2,"0");
+    $("#h").textContent = String(h).padStart(2,"0");
+    $("#m").textContent = String(m).padStart(2,"0");
+    $("#s").textContent = String(s).padStart(2,"0");
+  }
+  tick(); setInterval(tick, 1000);
+}
+
+function makeHearts(){
+  const wrap = $("#hearts");
+  for(let i=0;i<18;i++){
+    const h = document.createElement("div"); h.className = "heart";
+    h.style.left = (Math.random()*100)+"%"; h.style.top = (Math.random()*100+10)+"%"; h.style.animation = `floaty ${6+Math.random()*5}s ease-in-out ${i*0.2}s infinite`;
+    wrap.appendChild(h);
+  }
+}
+
+function confetti(){
+  const c = $("#confetti"); const ctx = c.getContext("2d");
+  let W = c.width = innerWidth, H = c.height = innerHeight;
+  const colors = ["#fde68a","#fca5a5","#a7f3d0","#c7d2fe","#f9a8d4"];
+  let parts = Array.from({length:160},()=>({x:Math.random()*W,y:-20-Math.random()*H,r:6+Math.random()*6,c:colors[Math.random()*colors.length|0],s:1+Math.random()*3}));
+  let raf; function draw(){
+    ctx.clearRect(0,0,W,H);
+    for(const p of parts){ p.y+=p.s; p.x+=Math.sin(p.y/25); ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2); ctx.fillStyle=p.c; ctx.fill(); }
+    raf = requestAnimationFrame(draw);
+  }
+  function onResize(){ W=c.width=innerWidth; H=c.height=innerHeight; }
+  addEventListener('resize', onResize);
+  draw(); setTimeout(()=>{ cancelAnimationFrame(raf); removeEventListener('resize',onResize); ctx.clearRect(0,0,W,H); }, 3500);
+}
+
+/*************** RENDER ***************/
+(function init(){
+  $("#yourName").textContent = SETTINGS.yourName;
+  $("#herName").textContent = SETTINGS.herName;
+  $("#herNameChip").textContent = SETTINGS.herName;
+  typewriter($("#heroTagline"), SETTINGS.heroTagline);
+  setCountdown(SETTINGS.herBirthdayISO);
+  makeHearts();
+
+  // Audio
+  if(SETTINGS.songUrl){
+    $("#audioWrap").style.display = "flex";
+    $("#song").src = SETTINGS.songUrl;
+    let playing=false; $("#play").onclick = ()=>{ const a=$("#song"); playing? a.pause(): a.play(); playing=!playing; $("#play").textContent = playing? "⏸ Pause" : "▶ Play Song"; };
+  }
+
+  // Letter
+  $("#loveLetter").innerText = SETTINGS.loveLetter;
+
+  // Timeline
+  const t = $("#timeline");
+  SETTINGS.timeline.forEach(item=>{
+    const d = document.createElement('div'); d.className='t-item';
+    d.innerHTML = `<div class="t-date">${item.date}</div><div class="t-text">${item.text}</div>`;
+    t.appendChild(d);
+  });
+
+  // Photos
+  const g = $("#photos");
+  SETTINGS.photos.forEach(src=>{
+    const tile = document.createElement('div'); tile.className='g-tile';
+    tile.innerHTML = `<img alt="memory" loading="lazy" src="${src}">`;
+    tile.onclick = ()=>{ $("#modalImg").src=src; $("#modal").classList.add('open'); };
+    g.appendChild(tile);
+  });
+  $("#modal").onclick = ()=> $("#modal").classList.remove('open');
+
+  // Quiz
+  const qa = $("#quiz");
+  SETTINGS.quiz.forEach(({q,a})=>{
+    const el = document.createElement('div'); el.className='card q';
+    el.innerHTML = `<div><div style="font-weight:700">${q}</div><div class="ans" style="display:none">${a}</div></div><button class="reveal">Reveal</button>`;
+    el.querySelector('.reveal').onclick = (ev)=>{
+      const ans = el.querySelector('.ans'); const showing = ans.style.display !== 'none';
+      ans.style.display = showing? 'none' : 'block'; ev.target.textContent = showing? 'Reveal' : 'Hide';
+    };
+    qa.appendChild(el);
+  });
+
+  // Reveal button
+  $("#reveal").onclick = confetti;
+})();
+</script>
+</body>
+</html>
